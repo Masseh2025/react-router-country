@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/countries";
+import { useState } from "react";
 
 export async function clientLoader() {
   const response = await fetch(
@@ -10,11 +11,22 @@ export async function clientLoader() {
 }
 
 export default function Countries({ loaderData }: Route.ComponentProps) {
+  const [search, setSearch] = useState("");
+  const filteredCountries = loaderData.filter((country: any) =>
+    country.name.common.toLowerCase().includes(search.toLowerCase())
+  );
   return (
-    <main className="w-full flex justify-center h-full bg-gray-300">
-      <div className="w-full max-w-7xl mx-4">
+    <main className="w-full flex flex-col items-center justify-center h-full bg-gray-300">
+      <input
+        type="text"
+        placeholder="Search for a country"
+        className="w-full  max-w-2xl p-4 rounded-md border border-gray-300"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <div className="w-full max-w-7xl mx-4 min-h-screen">
         <ul className="w-full grid grid-cols-4 gap-4">
-          {loaderData.map((country: any) => (
+          {filteredCountries.map((country: any) => (
             <li key={country.name.common}>
               <div className="w-full h-full min-h-80 flex flex-col rounded-md overflow-hidden">
                 <div className="h-[55%]">
