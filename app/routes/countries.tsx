@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/countries";
 import { useState } from "react";
+import { SearchIcon } from "lucide-react";
 
 export async function clientLoader() {
   const response = await fetch(
@@ -23,28 +24,36 @@ export default function Countries({ loaderData }: Route.ComponentProps) {
     return matchesSearch && matchesRegion;
   });
   return (
-    <main className="w-full flex flex-col items-center justify-center h-full bg-gray-300">
+    <main className="w-full flex flex-col items-center justify-center h-full bg-gray-50">
       <div className="w-full max-w-7xl min-h-screen p-4">
-        <input
-          type="text"
-          placeholder="Search for a country"
-          className=" w-full max-w-2xl p-4 rounded-md border border-gray-300"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <select value={region} onChange={(e) => setRegion(e.target.value)}>
-          <option value="">All</option>
-          <option value="asia">Asia</option>
-          <option value="europe">Europe</option>
-          <option value="americas">Americas</option>
-          <option value="oceania">Oceania</option>
-          <option value="africa">Africa</option>
-        </select>
-
+        <div className="flex flex-col lg:justify-between lg:flex-row mb-4">
+          <div className="flex items-center  shadow-2xl rounded-md max-w-2xl w-full bg-white mb-4 lg:mb-0">
+            <SearchIcon className="w-6 h-6 mx-4" />
+            <input
+              type="text"
+              placeholder="Search for a country"
+              className="w-full p-4 rounded-md"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+          <select
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
+            className="w-full max-w-md p-4 rounded-md shadow-2xl bg-white"
+          >
+            <option value="">All</option>
+            <option value="asia">Asia</option>
+            <option value="europe">Europe</option>
+            <option value="americas">Americas</option>
+            <option value="oceania">Oceania</option>
+            <option value="africa">Africa</option>
+          </select>
+        </div>
         <ul className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredCountries.map((country: any) => (
             <li key={country.name.common}>
-              <div className="w-full h-full 4 min-h-96 max-h-96 flex flex-col rounded-md overflow-hidden">
+              <div className="w-full h-full 4 min-h-96 max-h-96 flex flex-col rounded-md overflow-hidden shadow-xl">
                 <div className="h-[55%]">
                   <img
                     src={country.flags.svg}
