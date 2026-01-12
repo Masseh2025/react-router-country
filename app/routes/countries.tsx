@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/countries";
 import { useState } from "react";
 import { SearchIcon } from "lucide-react";
+import { motion } from "motion/react";
 
 export async function clientLoader() {
   const response = await fetch(
@@ -53,7 +54,12 @@ export default function Countries({ loaderData }: Route.ComponentProps) {
         <ul className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredCountries.map((country: any) => (
             <li key={country.name.common}>
-              <div className="w-full h-full 4 min-h-96 max-h-96 flex flex-col rounded-md overflow-hidden shadow-xl">
+              <motion.div
+                initial={{ y: 0, scale: 1 }}
+                whileHover={{ y: -1, scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+                className="w-full h-full 4 min-h-96 max-h-96 flex flex-col rounded-md overflow-hidden shadow-xl"
+              >
                 <div className="h-[55%]">
                   <img
                     src={country.flags.svg}
@@ -77,7 +83,7 @@ export default function Countries({ loaderData }: Route.ComponentProps) {
                     {country.capital}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </li>
           ))}
         </ul>
