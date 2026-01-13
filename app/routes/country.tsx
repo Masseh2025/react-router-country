@@ -13,8 +13,8 @@ export default function Country({ loaderData }: Route.ComponentProps) {
   const currencies = Object.keys(loaderData[0].currencies);
   const languages = Object.values(loaderData[0].languages);
   return (
-    <main className="w-full h-full min-h-screen bg-gray-50 flex justify-center items-center">
-      <div className="w-full max-w-7xl p-4 bg-grey-400 flex flex-col justify-center items-center">
+    <main className="w-full h-full min-h-screen bg-gray-50 flex justify-center items-start">
+      <div className="w-full max-w-7xl p-4 flex flex-col justify-center items-center">
         <div className="flex flex-col  justify-center items-center max-w-md w-full">
           <button className="p-2 rounded-md shadow-2xl bg-white mb-8 self-start">
             <Link to="/countries">Back</Link>
@@ -22,7 +22,7 @@ export default function Country({ loaderData }: Route.ComponentProps) {
           <img
             src={loaderData[0].flags.svg}
             alt={loaderData[0].name.common}
-            className="w-full h-full object-cover max-w-md mb-8"
+            className="w-full h-full object-cover max-w-md mb-8 shadow-2xl rounded-xl"
           />
           <div className="w-full flex flex-col md:flex-row md:justify-center md:items-center">
             <div className="mb-4 md:mb-0">
