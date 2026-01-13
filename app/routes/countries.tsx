@@ -69,7 +69,10 @@ export default function Countries({ loaderData }: Route.ComponentProps) {
                 </div>
                 <div className="max-h-[45%] h-full bg-white p-4">
                   <h2 className="text-lg font-bold">
-                    <Link to={country.name.common}> {country.name.common}</Link>
+                    <Link to={country.name.official}>
+                      {" "}
+                      {country.name.common}
+                    </Link>
                   </h2>
                   <p>
                     <span className="font-bold">Population:</span>{" "}

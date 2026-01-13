@@ -16,16 +16,20 @@ export default function Country({ loaderData }: Route.ComponentProps) {
     <main className="w-full h-full min-h-screen bg-gray-50 flex justify-center items-start">
       <div className="w-full max-w-7xl p-4 flex flex-col justify-center items-center">
         <div className="flex flex-col  justify-center items-center max-w-md w-full">
-          <button className="p-2 rounded-md shadow-2xl bg-white mb-8 self-start">
-            <Link to="/countries">Back</Link>
-          </button>
+          <Link
+            className="p-2 rounded-md shadow-2xl bg-white mb-8 self-start"
+            to="/countries"
+          >
+            Back
+          </Link>
+
           <img
             src={loaderData[0].flags.svg}
             alt={loaderData[0].name.common}
             className="w-full h-full object-cover max-w-md mb-8 shadow-2xl rounded-xl"
           />
           <div className="w-full flex flex-col md:flex-row md:justify-center md:items-center">
-            <div className="mb-4 md:mb-0">
+            <div className="mb-4 md:mb-0 w-full">
               <h2 className="font-bold text-2xl mb-4">
                 {loaderData[0]?.name.common || "N/A"}
               </h2>
@@ -50,7 +54,7 @@ export default function Country({ loaderData }: Route.ComponentProps) {
                 {loaderData[0]?.capital || "N/A"}
               </p>
             </div>
-            <div className="md:ml-8 justify-center">
+            <div className="md:ml-8 justify-center w-full">
               <p>
                 <span className="font-bold">Top level domain: </span>
                 {loaderData[0]?.tld || "N/A"}
@@ -69,6 +73,11 @@ export default function Country({ loaderData }: Route.ComponentProps) {
               </p>
             </div>
           </div>
+          <p className="mt-4 w-full">
+            <span className="font-bold">Bordering countries: </span>
+            {loaderData[0]?.borders?.map((border: any) => border).join(", ") ||
+              "N/A"}
+          </p>
         </div>
       </div>
     </main>
