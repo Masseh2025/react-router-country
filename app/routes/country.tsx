@@ -18,7 +18,7 @@ export default function Country({ loaderData }: Route.ComponentProps) {
         <div className="flex flex-col  justify-center items-center max-w-md w-full">
           <Link
             className="p-2 rounded-md shadow-2xl bg-white mb-8 self-start"
-            to="/countries"
+            to="/"
           >
             Back
           </Link>
